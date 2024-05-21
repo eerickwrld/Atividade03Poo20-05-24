@@ -1,0 +1,74 @@
+Sobrescrita de Métodos
+Código de Exemplo:
+
+class Animal {
+ // Método a ser sobrescrito
+ public void emitirSom() {
+ System.out.println("O animal faz um som");
+ }
+}
+
+class Cachorro extends Animal {
+ // Sobrescrita do método emitirSom
+ @Override
+ public void emitirSom() {
+ System.out.println("O cachorro late");
+ }
+}
+
+class Gato extends Animal {
+ // Sobrescrita do método emitirSom
+ @Override
+ public void emitirSom() {
+ System.out.println("O gato mia");
+ }
+}
+
+
+Sobrescrita: Ocorre quando uma classe filha redefine um método da classe pai com a mesma assinatura (nome e parâmetros).
+Vantagens:
+Polimorfismo: Permite que uma classe específica forneça uma implementação específica de um método que já está definido na classe pai.
+Reutilização: Aproveita a estrutura da classe pai, permitindo a personalização do comportamento para subclasses.
+
+
+
+
+Casos de Teste Unitários:
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+public class AnimalTest {
+
+ @Test
+ public void testEmitirSomAnimal() {
+ Animal animal = new Animal();
+ ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+ System.setOut(new PrintStream(outContent));
+ animal.emitirSom();
+ assertEquals("O animal faz um som\n", outContent.toString());
+ }
+
+ @Test
+ public void testEmitirSomCachorro() {
+ Animal cachorro = new Cachorro();
+ ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+ System.setOut(new PrintStream(outContent));
+ cachorro.emitirSom();
+ assertEquals("O cachorro late\n", outContent.toString());
+ }
+
+ @Test
+ public void testEmitirSomGato() {
+ Animal gato = new Gato();
+ ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+ System.setOut(new PrintStream(outContent));
+ gato.emitirSom();
+ assertEquals("O gato mia\n", outContent.toString());
+ }
+}
+
+Conclusão
+Esses exemplos mostram como a sobrecarga e a sobrescrita de métodos podem ser usadas em Java. A sobrecarga permite a criação de métodos com o mesmo nome, mas com diferentes parâmetros, enquanto a sobrescrita permite que uma subclasse forneça uma implementação específica de um método definido na superclasse. Os testes unitários ajudam a garantir que os métodos funcionem conforme o esperado.
+
